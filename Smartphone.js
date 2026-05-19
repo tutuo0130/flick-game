@@ -7,32 +7,28 @@ const answer = document.getElementById("answer");
 // 結果表示
 const result = document.getElementById("result");
 
-// スコア表示
+// スコア
 const scoreText = document.getElementById("score");
 
-// 時間表示
+// 時間
 const timeText = document.getElementById("time");
 
-// コンボ表示
+// コンボ
 const comboText = document.getElementById("combo");
 
 // ボタン
 const startBtn = document.getElementById("startBtn");
 
-// ランク表示
+// ランク
 const rankText = document.getElementById("rank");
 
 
 // 問題一覧
 const words = [
-
     "あ","い","う","え","お",
     "か","き","く","け","こ",
     "さ","し","す","せ","そ",
-    "た","ち","つ","て","と",
-    "な","に","ぬ","ね","の",
-    "は","ひ","ふ","へ","ほ"
-
+    "た","ち","つ","て","と"
 ];
 
 
@@ -49,10 +45,14 @@ let time = 60;
 let combo = 0;
 
 // タイマー
-let timer;
+let timer = null;
 
 // ゲーム中か
 let playing = false;
+
+
+// 最初は入力不可
+answer.disabled = true;
 
 
 // ランダム問題表示
@@ -66,13 +66,17 @@ function nextQuestion(){
 }
 
 
+// スタートボタン
+startBtn.addEventListener("click", startGame);
+
+
 // ゲーム開始
-startBtn.addEventListener("click", () => {
+function startGame(){
 
-    // ゲーム中なら開始しない
-    if(playing) return;
+    // タイマー重複防止
+    clearInterval(timer);
 
-    // 状態ON
+    // ゲーム状態ON
     playing = true;
 
     // 初期化
@@ -85,20 +89,23 @@ startBtn.addEventListener("click", () => {
     comboText.innerText = combo;
     timeText.innerText = time;
 
-    // ランク消去
+    // メッセージ初期化
+    result.innerText = "";
+
+    // ランク初期化
     rankText.innerText = "";
 
     // 入力可能
     answer.disabled = false;
 
-    // 最初の問題
-    nextQuestion();
-
-    // 入力欄空
+    // 入力欄を空
     answer.value = "";
 
-    // 自動フォーカス
+    // カーソル自動
     answer.focus();
+
+    // 最初の問題
+    nextQuestion();
 
     // タイマー開始
     timer = setInterval(() => {
@@ -106,28 +113,25 @@ startBtn.addEventListener("click", () => {
         // 時間減少
         time--;
 
-        // 表示更新
+        // 更新
         timeText.innerText = time;
 
         // 0秒で終了
         if(time <= 0){
 
-            // タイマー停止
             clearInterval(timer);
 
-            // 終了処理
             gameOver();
         }
 
     },1000);
+}
 
-});
 
-
-// 入力された時
+// 入力判定
 answer.addEventListener("input", () => {
 
-    // ゲーム中じゃないなら無効
+    // ゲーム中以外は無効
     if(!playing) return;
 
     // 正解判定
@@ -136,21 +140,18 @@ answer.addEventListener("input", () => {
         // スコア加算
         score += 10;
 
-        // コンボ加算
+        // コンボ増加
         combo++;
 
-        // コンボボーナス
+        // 5コンボごとにボーナス
         if(combo % 5 === 0){
 
-            // ボーナス点
             score += 20;
 
-            // ボーナスメッセージ
             result.innerText = "🔥 コンボボーナス！";
         }
         else{
 
-            // 通常メッセージ
             result.innerText = "⭕ 正解！";
         }
 
@@ -158,17 +159,10 @@ answer.addEventListener("input", () => {
         scoreText.innerText = score;
         comboText.innerText = combo;
 
-        // アニメーション
-        question.style.transform = "scale(1.2)";
-
-        setTimeout(() => {
-            question.style.transform = "scale(1)";
-        },100);
-
         // 次の問題
         nextQuestion();
 
-        // 入力欄空
+        // 入力欄クリア
         answer.value = "";
     }
 
@@ -178,28 +172,32 @@ answer.addEventListener("input", () => {
 // ゲーム終了
 function gameOver(){
 
-    // 状態OFF
+    // ゲーム終了
     playing = false;
 
     // 入力不可
     answer.disabled = true;
 
-    // 終了表示
-    question.innerText = "終了";
+    // 問題表示変更
+    question.innerText = "終了！";
 
-    // ランク判定
+    // ランク
     let rank = "";
 
     if(score >= 500){
+
         rank = "🏆 Sランク";
     }
-    else if(score >= 350){
+    else if(score >= 300){
+
         rank = "🥇 Aランク";
     }
-    else if(score >= 200){
+    else if(score >= 150){
+
         rank = "🥈 Bランク";
     }
     else{
+
         rank = "🥉 Cランク";
     }
 
@@ -209,7 +207,6 @@ function gameOver(){
     // 結果表示
     result.innerText = "最終スコア : " + score;
 }
-
 // git add .
 // git commit -m "
 // fix pages"git push
