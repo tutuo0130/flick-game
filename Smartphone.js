@@ -162,6 +162,9 @@ answer.addEventListener("input", () => {
         // 次の問題
         nextQuestion();
 
+        // 入力欄を空にする
+        answer.value = "";
+
         // 入力欄クリア
         answer.value = "";
     }
