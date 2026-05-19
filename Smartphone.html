@@ -3,46 +3,73 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- スマホ表示を最適化 -->
+    <!-- スマホ画面に最適化 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>フリック入力ゲーム</title>
+    <title>フリックマスター</title>
 
-    <!-- CSSファイルを読み込む -->
+    <!-- CSS読み込み -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- タイトル -->
-    <h1>フリック入力ゲーム</h1>
+    <!-- 背景装飾 -->
+    <div class="background-circle"></div>
+    <div class="background-circle2"></div>
 
-    <!-- ゲーム全体 -->
+    <!-- ゲーム本体 -->
     <div class="game">
 
-        <!-- スコア表示 -->
-        <div class="info">
-            <p>スコア : <span id="score">0</span></p>
-            <p>残り時間 : <span id="time">30</span>秒</p>
+        <!-- タイトル -->
+        <h1>⚡ フリックマスター ⚡</h1>
+
+        <!-- ステータス -->
+        <div class="status">
+
+            <!-- スコア -->
+            <div class="card">
+                <p>スコア</p>
+                <h2 id="score">0</h2>
+            </div>
+
+            <!-- 時間 -->
+            <div class="card">
+                <p>残り時間</p>
+                <h2><span id="time">60</span> 秒</h2>
+            </div>
+
+            <!-- コンボ -->
+            <div class="card">
+                <p>コンボ</p>
+                <h2 id="combo">0</h2>
+            </div>
+
         </div>
 
         <!-- 問題表示 -->
         <div id="question">あ</div>
 
         <!-- 入力欄 -->
-        <input type="text" id="answer" placeholder="ここに入力">
+        <input
+            type="text"
+            id="answer"
+            placeholder="ここにフリック入力"
+            autocomplete="off"
+        >
 
-        <!-- 結果表示 -->
+        <!-- 結果 -->
         <div id="result"></div>
 
-        <!-- スタートボタン -->
-        <button id="startBtn">スタート</button>
+        <!-- ボタン -->
+        <button id="startBtn">ゲームスタート</button>
+
+        <!-- ランク表示 -->
+        <div id="rank"></div>
 
     </div>
 
-    <!-- JavaScript読み込み -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
 </html>
-
-<!-- settings.jsonユーザー基本設定に色々入れた -->
