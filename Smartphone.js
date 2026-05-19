@@ -131,4 +131,6 @@ answer.addEventListener("input", () => {
 
 });
 
-// git add .git commit -m "fix pages"git push
+// git add .
+// git commit -m "
+// fix pages"git push
