@@ -128,8 +128,11 @@ function startGame(){
 }
 
 
-// 入力判定
-answer.addEventListener("change", () => {
+// キーボードのボタンを押した時
+answer.addEventListener("keydown", (event) => {
+
+    // Enterキー以外なら何もしない
+    if(event.key !== "Enter") return;
 
     // ゲーム中以外は無効
     if(!playing) return;
@@ -143,8 +146,17 @@ answer.addEventListener("change", () => {
         // コンボ増加
         combo++;
 
-        // メッセージ
-        result.innerText = "⭕ 正解！";
+        // コンボボーナス
+        if(combo % 5 === 0){
+
+            score += 20;
+
+            result.innerText = "🔥 コンボボーナス！";
+        }
+        else{
+
+            result.innerText = "⭕ 正解！";
+        }
 
         // 表示更新
         scoreText.innerText = score;
@@ -152,13 +164,21 @@ answer.addEventListener("change", () => {
 
         // 次の問題
         nextQuestion();
-
-        // 入力欄クリア
-        answer.value = "";
-
-        // フォーカス
-        answer.focus();
     }
+    else{
+
+        // ミス時
+        result.innerText = "❌ ミス！";
+
+        // コンボリセット
+        combo = 0;
+
+        // 表示更新
+        comboText.innerText = combo;
+    }
+
+    // 入力欄を空にする
+    answer.value = "";
 
 });
 
