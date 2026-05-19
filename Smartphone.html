@@ -2,21 +2,46 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+
+    <!-- スマホ表示を最適化 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>フリック練習</title>
-    <link rel="stylesheet" href="Smartphone.css">
+
+    <title>フリック入力ゲーム</title>
+
+    <!-- CSSファイルを読み込む -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>フリック入力練習</h1>
+    <!-- タイトル -->
+    <h1>フリック入力ゲーム</h1>
 
-<div id="question">あ</div>
+    <!-- ゲーム全体 -->
+    <div class="game">
 
-<input type="text" id="answer" placeholder="ここに入力">
+        <!-- スコア表示 -->
+        <div class="info">
+            <p>スコア : <span id="score">0</span></p>
+            <p>残り時間 : <span id="time">30</span>秒</p>
+        </div>
 
-<div id="result"></div>
+        <!-- 問題表示 -->
+        <div id="question">あ</div>
 
-<script src="Smartphone.js"></script>
+        <!-- 入力欄 -->
+        <input type="text" id="answer" placeholder="ここに入力">
+
+        <!-- 結果表示 -->
+        <div id="result"></div>
+
+        <!-- スタートボタン -->
+        <button id="startBtn">スタート</button>
+
+    </div>
+
+    <!-- JavaScript読み込み -->
+    <script src="script.js"></script>
+
 </body>
 </html>
 

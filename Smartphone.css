@@ -1,15 +1,146 @@
+/* 画面全体 */
 body{
+
+    /* 文字を中央にする */
     text-align:center;
+
+    /* フォント設定 */
     font-family:sans-serif;
-    margin-top:50px;
+
+    /* 背景色 */
+    background:#f0f8ff;
+
+    /* 上の余白 */
+    margin-top:30px;
 }
 
+
+/* ゲームエリア */
+.game{
+
+    /* 白背景 */
+    background:white;
+
+    /* 横幅 */
+    width:90%;
+
+    /* 最大幅 */
+    max-width:400px;
+
+    /* 中央配置 */
+    margin:auto;
+
+    /* 内側余白 */
+    padding:20px;
+
+    /* 角を丸くする */
+    border-radius:20px;
+
+    /* 影 */
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+
+/* タイトル */
+h1{
+    color:#333;
+}
+
+
+/* スコアと時間 */
+.info{
+
+    /* 横並び */
+    display:flex;
+
+    /* 左右に配置 */
+    justify-content:space-around;
+
+    /* 文字サイズ */
+    font-size:20px;
+}
+
+
+/* 問題文字 */
 #question{
-    font-size:80px;
-    margin:30px;
+
+    /* 大きな文字 */
+    font-size:100px;
+
+    /* 余白 */
+    margin:30px 0;
+
+    /* 文字色 */
+    color:#ff4d4d;
 }
 
+
+/* 入力欄 */
 #answer{
+
+    /* 横幅 */
+    width:80%;
+
+    /* 文字サイズ */
     font-size:30px;
+
+    /* 内側余白 */
     padding:10px;
+
+    /* 枠線 */
+    border:2px solid #333;
+
+    /* 角丸 */
+    border-radius:10px;
+
+    /* 中央入力 */
+    text-align:center;
+}
+
+
+/* 結果表示 */
+#result{
+
+    /* 上余白 */
+    margin-top:20px;
+
+    /* 文字サイズ */
+    font-size:30px;
+
+    /* 高さ固定 */
+    height:40px;
+}
+
+
+/* ボタン */
+button{
+
+    /* 上余白 */
+    margin-top:20px;
+
+    /* 文字サイズ */
+    font-size:25px;
+
+    /* 内側余白 */
+    padding:10px 20px;
+
+    /* 背景色 */
+    background:#4da6ff;
+
+    /* 文字色 */
+    color:white;
+
+    /* 枠線なし */
+    border:none;
+
+    /* 角丸 */
+    border-radius:10px;
+}
+
+
+/* ボタン押した時 */
+button:active{
+
+    /* 少し縮む */
+    transform:scale(0.95);
 }
